@@ -1,0 +1,37 @@
+﻿{% extends "base.html" %}
+{% block content %}
+<meta charset="UTF-8">
+<h2 align="center">База продавцов</h2>
+{% if current_user.is_authenticated and current_user.id == 2 %}
+         <div>
+		<a href="/add_seller" class="btn btn-primary">Добавить</a>
+         </div>
+    {% endif %}
+{% for sel in sel0 %}
+<div class="table_container">
+    <table class="my_table">
+        <tr class="my_row">
+            <td class="title" width="150px" bgcolor="#dddddd">Код</td>
+            <td class="title" width="250px" bgcolor="#dddddd">ФИО</td>
+            <td class="title" width="100px" bgcolor="#dddddd">Телефон</td>
+            <td class="title" width="200px" bgcolor="#dddddd">Серия паспорта</td>
+            <td class="title" width="200px" bgcolor="#dddddd">Номер паспорта</td>
+        </tr>
+        <tr class="my_row">
+            <td class="ordinary" bgcolor="#eeeeff" align="left">{{ sel.id }} </td>
+            <td class="ordinary" bgcolor="#eeeeff" align="left">{{ sel.fio }} </td>
+            <td class="ordinary" bgcolor="#eeeeff" align="left">{{ sel.phone }} </td>
+            <td class="ordinary" bgcolor="#eeeeff" align="left">{{ sel.pasport_series }} </td>
+            <td class="ordinary" bgcolor="#eeeeff" align="left">{{ sel.pasport_number }} </td>
+        </tr>
+    </table>
+    {% if current_user.is_authenticated and current_user.id == 2 %}
+         <div>
+	        <a href="/seller_delete/{{ sel.id }}" class="btn btn-warning btn-sm">Удалить</a>
+         </div>
+    {% endif %}
+</div>
+<br>
+{% endfor %}
+
+{% endblock %}

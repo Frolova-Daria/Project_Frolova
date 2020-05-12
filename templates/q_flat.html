@@ -1,0 +1,48 @@
+﻿{% extends "base.html" %}
+
+{% block content %}
+<h1>Поиск предложений</h1>
+<form action="" method="post">
+    {{ form.hidden_tag() }}
+    {{ form.csrf_token }}
+    <p>
+        {{ form.ar1.label }}<br>
+        {{ form.ar1(class="form-control") }}<br>
+        {% for error in form.ar1.errors %}
+            <p class="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.ar2.label }}<br>
+        {{ form.ar2(class="form-control") }}<br>
+        {% for error in form.ar2.errors %}
+            <p class="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.pr1.label }}<br>
+        {{ form.pr1(class="form-control") }}<br>
+        {% for error in form.pr1.errors %}
+            <p class="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.pr2.label }}<br>
+        {{ form.pr2(class="form-control") }}<br>
+        {% for error in form.pr2.errors %}
+            <p class="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+        {% endfor %}
+    </p>
+
+    <p>{{ form.submit(type="submit", class="btn btn-primary") }}</p>
+    {{message}}
+</form>
+{% endblock %}

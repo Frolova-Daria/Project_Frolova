@@ -1,0 +1,31 @@
+﻿{% extends "base.html" %}
+{% block content %}
+<meta charset="UTF-8">
+<h2 align="center">База видов жилья</h2>
+    {% if current_user.is_authenticated and current_user.id == 2 %}
+         <div>
+		<a href="/add_typ" class="btn btn-primary">Добавить</a>
+         </div>
+    {% endif %}
+{% for typ in typ0 %}
+<div class="table_container">
+    <table class="my_table">
+        <tr class="my_row">
+            <td class="title" width="150px" bgcolor="#dddddd">Код</td>
+            <td class="title" width="400px" bgcolor="#dddddd">вид жилья</td>
+        </tr>
+        <tr class="my_row">
+            <td class="ordinary" bgcolor="#eeeeff" align="left">{{ typ.id }} </td>
+            <td class="ordinary" bgcolor="#eeeeff" align="left">{{ typ.type }} </td>
+        </tr>
+    </table>
+    {% if current_user.is_authenticated and current_user.id == 2 %}
+         <div>
+	        <a href="/typ_delete/{{ typ.id }}" class="btn btn-warning btn-sm">Удалить</a>
+         </div>
+    {% endif %}
+</div>
+<br>
+{% endfor %}
+
+{% endblock %}

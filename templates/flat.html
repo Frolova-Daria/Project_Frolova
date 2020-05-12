@@ -1,0 +1,50 @@
+﻿{% extends "base.html" %}
+{% block content %}
+<meta charset="UTF-8">
+<h2 align="center">База жилья</h2>
+    {% if current_user.is_authenticated and current_user.id == 2 %}
+         <div>
+		<a href="/add_flat" class="btn btn-primary">Добавить</a>
+         </div>
+    {% endif %}
+{% for flat in flat0 %}
+<div class="table_container">
+    <table class="my_table">
+        <tr class="my_row">
+            <td class="title" width="150px" bgcolor="#dddddd">Код</td>
+            <td class="title" width="150px" bgcolor="#dddddd">Улица</td>
+            <td class="title" width="100px" bgcolor="#dddddd">Дом</td>
+            <td class="title" width="100px" bgcolor="#dddddd">Квартира</td>
+            <td class="title" width="100px" bgcolor="#dddddd">Вид</td>
+            <td class="title" width="100px" bgcolor="#dddddd">Площадь</td>
+            <td class="title" width="100px" bgcolor="#dddddd">Цена</td>
+            <td class="title" width="100px" bgcolor="#dddddd">Продавец</td>
+            <td class="title" width="100px" bgcolor="#dddddd">Продано</td>
+        </tr>
+        <tr class="my_row">
+            <td class="ordinary" bgcolor="#eeeeff" align="left">{{ flat.id }} </td>
+            <td class="ordinary" bgcolor="#eeeeff" align="left">{{ uli[flat.street] }} </td>
+            <td class="ordinary" bgcolor="#eeeeff" align="left">{{ flat.house }} </td>
+            <td class="ordinary" bgcolor="#eeeeff" align="left">{{ flat.flat }} </td>
+            <td class="ordinary" bgcolor="#eeeeff" align="left">{{ flat.type }} </td>
+            <td class="ordinary" bgcolor="#eeeeff" align="left">{{ flat.area }} </td>
+            <td class="ordinary" bgcolor="#eeeeff" align="left">{{ flat.price }} </td>
+            <td class="ordinary" bgcolor="#eeeeff" align="left">{{ flat.seller }} </td>
+            {% if flat.sale %}
+            <td class="ordinary" bgcolor="#eeffee" align="center">Продано</td>
+            {% else %}
+            <td class="ordinary" bgcolor="#ffeeff" align="center">Продается</td>
+            {% endif %}
+
+        </tr>
+    </table>
+    {% if current_user.is_authenticated and current_user.id == 2 %}
+         <div>
+	        <a href="/flat_delete/{{ flat.id }}" class="btn btn-warning btn-sm">Удалить</a>
+         </div>
+    {% endif %}
+</div>
+<br>
+{% endfor %}
+
+{% endblock %}

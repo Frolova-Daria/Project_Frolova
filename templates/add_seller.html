@@ -1,0 +1,57 @@
+﻿{% extends "base.html" %}
+
+{% block content %}
+<h1>Добавление продавцов</h1>
+<form action="" method="post">
+    {{ form.hidden_tag() }}
+    {{ form.csrf_token }}
+    <p>
+        {{ form.id.label }}<br>
+        {{ form.id(class="form-control") }}<br>
+        {% for error in form.id.errors %}
+            <p class="alert alert-danger" role="alert">
+                {{ error }}
+            </p> 
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.fio.label }}<br>
+        {{ form.fio(class="form-control") }}<br>
+        {% for error in form.fio.errors %}
+            <p class="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.phone.label }}<br>
+        {{ form.phone(class="form-control") }}<br>
+        {% for error in form.phone.errors %}
+            <p class="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.pasport_series.label }}<br>
+        {{ form.pasport_series(class="form-control") }}<br>
+        {% for error in form.pasport_series.errors %}
+            <p class="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.pasport_number.label }}<br>
+        {{ form.pasport_number(class="form-control") }}<br>
+        {% for error in form.pasport_number.errors %}
+            <p class="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+        {% endfor %}
+    </p>
+
+    <p>{{ form.submit(type="submit", class="btn btn-primary") }}</p>
+    {{message}}
+</form>
+{% endblock %}

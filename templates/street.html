@@ -1,0 +1,31 @@
+﻿{% extends "base.html" %}
+{% block content %}
+<meta charset="UTF-8">
+<h2 align="center">База Улиц</h2>
+    {% if current_user.is_authenticated and current_user.id == 2 %}
+         <div>
+		<a href="/add_street" class="btn btn-primary">Добавить</a>
+         </div>
+    {% endif %}
+{% for ul in uli %}
+<div class="table_container">
+    <table class="my_table">
+        <tr class="my_row">
+            <td class="title" width="150px" bgcolor="#dddddd">Код</td>
+            <td class="title" width="150px" bgcolor="#dddddd">Улица</td>
+        </tr>
+        <tr class="my_row">
+            <td class="ordinary" bgcolor="#eeeeff" align="left">{{ ul.id }} </td>
+            <td class="ordinary" bgcolor="#eeeeff" align="left">{{ ul.street }} </td>
+        </tr>
+    </table>
+    {% if current_user.is_authenticated and current_user.id == 2 %}
+         <div>
+	        <a href="/street_delete/{{ ul.id }}" class="btn btn-warning btn-sm">Удалить</a>
+         </div>
+    {% endif %}
+</div>
+<br>
+{% endfor %}
+
+{% endblock %}
